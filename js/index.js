@@ -21,40 +21,70 @@ async function getKata()  {
 
 async function click() {
   // too many transformations, not good
-  // bad, just bad, but can parse all sorts of input
+  // bad, just bad, but can parse all (well, almost) sorts of input
   // will update later, wanna sleep now
-  let result = [];
-  outputField.textContent = '';
-  const regex = new RegExp(/(https?:\/\/[^\s]+)/g);
-  userArr = inputField.value;
-  userArr = userArr.trim().split("\n");
 
+  // setting storage for result
+  let resultY = [];
+  let resultN = [];
+  // clearing output field
+  outputField.textContent = '';
+  // setting regex for urls
+  const regex = new RegExp(/(https?:\/\/[^\s]+)/g);
+
+  // --- PARSING CODE HERE --- //
+  // getting user info
+  userArr = inputField.value;
+  // splitting text info, transforming into array of lines
+  userArr = userArr.trim().split("\n");
+  // extracting username, adding it to profile url
   username = userArr.pop().trim();
   url = `https://www.codewars.com/api/v1/users/${username}/code-challenges/completed`;
 
-  userArr = userArr.map(element => element.match(regex)[0]);
+  // filtering empty strings
   userArr = userArr.filter(element => element != '');
-  userArr = userArr.map(element => element.replace(/\/$/, ""));
+  // getting urls
+  userArr = userArr.map(element => element.match(regex)[0]);
+  // extracting last parts of urls ("slugs")
+  userArr = userArr.map(element => element.replace(/\/$/, ''));
 
-
+  // --- JSON HANDLING --- //
+  // getting json from Codewars API
   cwArr = await getKata();
+  // getting data on requested lang
   cwArr = cwArr.filter(n => n.completedLanguages.includes(lang));
+  // extracting "slugs"
   cwArr = cwArr.map(n => n.slug);
 
   // too complicated, O(n^2) after apllying to str array
   userArr.forEach(element => {
+    // comparing "slugs"
     let afterSlash = /[^/]*$/.exec(element)[0];
     if (cwArr.includes(afterSlash)) {
-      result.push(element + ' +');
+      resultY.push(element);
     } else  {
-      result.push(element + ' -');
+      resultN.push(element);
     }
   });
   
-  console.log(userArr)
+  // finally
+  resultY.forEach(element => {
+    let a = document.createElement('a');
+    a.setAttribute('href', element);
+    a.innerHTML = element;
+    outputField.appendChild(a);
+    outputField.innerHTML += '<span class="charPlus"> +</span>';
+    outputField.innerHTML += '\r\n';
+  });
 
-  result.forEach(element => {
-    outputField.textContent += element + '\r\n';
+  resultN.forEach(element => {
+    let a = document.createElement('a');
+    a.setAttribute('href', element);
+    a.setAttribute('target', "_blank");
+    a.innerHTML = element;
+    outputField.appendChild(a);
+    outputField.innerHTML += '<span class="charMinus"> -</span>';
+    outputField.innerHTML += '\r\n';
   });
 }
 

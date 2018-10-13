@@ -3,55 +3,82 @@ body  {
   height: 100%;
   font-family: Inconsolata;
 }
+a {
+  color: #5e5e5e;
+}
 
 .split {
   height: 100%;
   width: 50%;
   position: fixed;
+  display: flex;
   z-index: 1;
   top: 0;
   overflow-x: hidden;
-  padding-top: 20px;
 }
 
 .left {
   left: 0;
-  background-color: rgb(54, 52, 52);
+  background-color: #363434;
 }
 
 .right {
   right: 0;
-  background-color: rgb(36, 32, 32);
+  background-color: #363434;
 }
 
 .centered {
   width: 80%;
   height: 80%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  margin: auto;
 }
-
 
 .inputField {
   width: 100%;
-  height: 70%;
-  color: white;
-  background-color: gray;
-}
-
-.tryBtn {
-  width: 100%;
-  height: 10%;
+  height: 95%;
+  margin: 0;
+  background-color: #242020;
+  font-size: 22px;
+  color: #5e5e5e;
+  border: none;
+  resize: none;
+  outline: none;
 }
 
 .outputField  {
   width: 100%;
-  height: 70%;
-  color: hsl(0, 0%, 37%);
+  height: 92%;
+  margin: 0;
+  padding: 2%;
+  background-color: #2b2929;
+  font-size: 22px;
   white-space: pre-line;
   text-align: left;
 }
 
+
+.tryBtn {
+  width: 10%;
+  height: 5%;
+  margin-top: 3%;
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #f44336;
+  opacity: 0.7;
+  border: none;
+  border-radius: 10px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+.tryBtn:hover {opacity: 1}
+.tryBtn:active {
+  background-color: #d62e22;
+}
+.tryBtn:focus {outline:0;}
+
+.charPlus {
+  color: #00805a;
+}
+.charMinus {
+  color: #d10000;
+}
