@@ -1,22 +1,22 @@
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
+const proxyurl = 'https://cors-anywhere.herokuapp.com/';
 let url;
 let username;
 
-const lang = "javascript";
+const lang = 'javascript';
 
 let userArr;
 let cwArr;
 
-//dom elements
+// dom elements
 const inputField = document.querySelector('.inputField');
 const tryBtn = document.querySelector('.tryBtn');
 const outputField = document.querySelector('.outputField');
 
 
 async function getKata()  {
-  const response = await fetch(proxyurl + url); 
+  const response = await fetch(proxyurl + url);
   const json = await response.json();
-  return json['data']; 
+  return json.data;
 }
 
 async function click() {
@@ -36,13 +36,13 @@ async function click() {
   // getting user info
   userArr = inputField.value;
   // splitting text info, transforming into array of lines
-  userArr = userArr.trim().split("\n");
+  userArr = userArr.trim().split('\n');
   // extracting username, adding it to profile url
   username = userArr.pop().trim();
   url = `https://www.codewars.com/api/v1/users/${username}/code-challenges/completed`;
 
   // filtering empty strings
-  userArr = userArr.filter(element => element != '');
+  userArr = userArr.filter(element => element !== '');
   // getting urls
   userArr = userArr.map(element => element.match(regex)[0]);
   // extracting last parts of urls ("slugs")
@@ -57,19 +57,19 @@ async function click() {
   cwArr = cwArr.map(n => n.slug);
 
   // too complicated, O(n^2) after apllying to str array
-  userArr.forEach(element => {
+  userArr.forEach((element) => {
     // comparing "slugs"
-    let afterSlash = /[^/]*$/.exec(element)[0];
+    const afterSlash = /[^/]*$/.exec(element)[0];
     if (cwArr.includes(afterSlash)) {
       resultY.push(element);
     } else  {
       resultN.push(element);
     }
   });
-  
+
   // finally
-  resultY.forEach(element => {
-    let a = document.createElement('a');
+  resultY.forEach((element) => {
+    const a = document.createElement('a');
     a.setAttribute('href', element);
     a.innerHTML = element;
     outputField.appendChild(a);
@@ -77,10 +77,10 @@ async function click() {
     outputField.innerHTML += '\r\n';
   });
 
-  resultN.forEach(element => {
-    let a = document.createElement('a');
+  resultN.forEach((element) => {
+    const a = document.createElement('a');
     a.setAttribute('href', element);
-    a.setAttribute('target', "_blank");
+    a.setAttribute('target', '_blank');
     a.innerHTML = element;
     outputField.appendChild(a);
     outputField.innerHTML += '<span class="charMinus"> -</span>';
