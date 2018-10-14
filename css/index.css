@@ -48,7 +48,7 @@ textarea {
   border: none;
   resize: none;
   outline: none;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .outputField  {
@@ -62,21 +62,20 @@ textarea {
   font-size: inherit;
   text-align: left;
   white-space: pre-line;
+  overflow: auto;
 }
 
 
 .tryBtn {
   width: auto;
-  height: auto;
   margin-top: 10px;
-  padding: 10px;
-  font-size: 18px;
+  padding: 7px;
+  font-size: 12px;
   color: #ffffff;
   background-color: #f44336;
   opacity: 0.7;
   border: none;
-  border-radius: 10px;
-  font-weight: bolder;
+  border-radius: 4px;
   cursor: pointer;
 }
 .tryBtn:hover {opacity: 1}
