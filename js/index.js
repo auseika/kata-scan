@@ -64,7 +64,7 @@ async function click() {
     a.setAttribute('href', element);
     a.innerHTML = element;
     outputField.appendChild(a);
-    outputField.innerHTML += `<span class="charPlus"> -</span>${'\r\n'}`;
+    outputField.innerHTML += `<span class="charPlus"> +</span>${'\r\n'}`;
   });
 
   resultN.forEach((element) => {
