@@ -2,7 +2,9 @@ body  {
   width: 100%;
   height: 100%;
   font-family: Inconsolata;
+  font-size: 18px;
 }
+
 a {
   color: #5e5e5e;
   font-size: 18px;
@@ -29,8 +31,8 @@ a {
 }
 
 .centered {
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 90%;
   margin: auto;
 }
 
@@ -38,31 +40,36 @@ textarea {
   width: 100%;
   height: 95%;
   margin: 0;
-  padding: 0px;
+  padding: 5px;
   background-color: #242020;
-  font-size: 18px;
   color: #5e5e5e;
+  font-family: inherit;
+  font-size: inherit;
   border: none;
   resize: none;
   outline: none;
+  overflow: hidden;
 }
 
 .outputField  {
   width: 100%;
-  height: 92%;
+  height: 95%;
   margin: 0;
-  padding: 2%;
+  padding: 5px;
   background-color: #2b2929;
-  font-size: 18px;
-  white-space: pre-line;
+  color: #5e5e5e;
+  font-family: inherit;
+  font-size: inherit;
   text-align: left;
+  white-space: pre-line;
 }
 
 
 .tryBtn {
-  width: 10%;
-  height: 5%;
-  margin-top: 3%;
+  width: auto;
+  height: auto;
+  margin-top: 10px;
+  padding: 10px;
   font-size: 18px;
   color: #ffffff;
   background-color: #f44336;
