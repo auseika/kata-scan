@@ -12,14 +12,14 @@ const outputField = document.querySelector('.outputField');
 
 
 function parseUsername() {
-  userArr = inputFieldUserName.value; // getting user info
+  username = inputFieldUserName.value; // getting user info
+  userArr = inputField.value;
   userArr = userArr.trim().split('\n'); // splitting text info, transforming into array of lines
-  username = userArr.pop().trim(); // extracting username, global variable for future purposes
+  // username = userArr.pop().trim(); // extracting username, global variable for future purposes
   url = `https://www.codewars.com/api/v1/users/${username}/code-challenges/completed`; // inserting username to url
 }
 
 function parseURL() {
-  userArr = inputField.value;
   const regex = new RegExp(/(https?:\/\/[^\s]+)/g); // setting regex for urls
   userArr = userArr.filter(element => element !== ''); // filtering empty strings
   userArr = userArr.map(element => element.match(regex)[0]); // getting urls
