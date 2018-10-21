@@ -19,6 +19,7 @@ function parseUsername() {
 }
 
 function parseURL() {
+  userArr = inputField.value;
   const regex = new RegExp(/(https?:\/\/[^\s]+)/g); // setting regex for urls
   userArr = userArr.filter(element => element !== ''); // filtering empty strings
   userArr = userArr.map(element => element.match(regex)[0]); // getting urls
