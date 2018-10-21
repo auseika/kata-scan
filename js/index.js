@@ -5,13 +5,14 @@ const lang = 'javascript';
 let userArr;
 let cwArr;
 
-const inputField = document.querySelector('.inputField');
+const inputFieldUserName = document.querySelector('.inputFieldUserName');
+const inputField = document.querySelector('.inputFieldKata');
 const tryBtn = document.querySelector('.tryBtn');
 const outputField = document.querySelector('.outputField');
 
 
 function parseUsername() {
-  userArr = inputField.value; // getting user info
+  userArr = inputFieldUserName.value; // getting user info
   userArr = userArr.trim().split('\n'); // splitting text info, transforming into array of lines
   username = userArr.pop().trim(); // extracting username, global variable for future purposes
   url = `https://www.codewars.com/api/v1/users/${username}/code-challenges/completed`; // inserting username to url
