@@ -64,7 +64,7 @@ textarea {
   border: none;
   resize: none;
   outline: none;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .outputField  {
@@ -105,4 +105,19 @@ textarea {
 }
 .charMinus {
   color: #d10000;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #424242;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
 }
