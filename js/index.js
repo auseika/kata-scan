@@ -1,4 +1,4 @@
-const proxyurl = 'https://cors-anywhere.herokuapp.com/';
+const proxyurl = 'https://cors-anywhere.herokuapp.com/'; // backup server https://fathomless-cliffs-85079.herokuapp.com/
 let url;
 let username;
 const lang = 'javascript';
@@ -24,17 +24,17 @@ function parseURL() {
   userArr = userArr.map(element => element.replace(/\/$/, '')); // deleting trailing slashes
 }
 
-async function getKata() {
-  const response = await fetch(proxyurl + url);
+async function getKata(page = 0) {
+  const response = await fetch(proxyurl + url + `?page=${page}`);
   const json = await response.json();
-  return json.data;
+  return json;
 }
 
 async function click() {
   // too many transformations, not good, but can parse all (well, almost) sorts of input
   // will update later, wanna sleep now
   const resultY = []; // setting storage for completed katas
-  const resultN = []; // setting storage for un completed katas
+  const resultN = []; // setting storage for uncompleted katas
   outputField.textContent = ''; // clearing output field
 
   // --- PARSING CODE HERE --- //
@@ -42,9 +42,21 @@ async function click() {
   parseURL(); // parsing user input for urls to katas
 
   // --- JSON HANDLING --- //
-  
   cwArr = await getKata(); // getting json from Codewars API
-  cwArr = cwArr.filter(n => n.completedLanguages.includes(lang)); // getting data on requested lang
+  console.log(cwArr);
+
+  if (cwArr.totalPages > 1) {
+    for (let i = 1; i < cwArr.totalPages; i++) {
+      console.log(i);
+      let temp = await getKata(i);
+      console.log(temp);
+      cwArr.data = cwArr.data.concat(temp.data);
+    }
+  }
+
+  console.log(cwArr);
+
+  cwArr = cwArr.data.filter(n => n.completedLanguages.includes(lang)); // getting data on requested lang
   cwArr = cwArr.map(n => n.slug); // extracting "slugs"
 
   // comparing "slugs", filling resulting arrays
