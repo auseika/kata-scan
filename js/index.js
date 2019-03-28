@@ -26,6 +26,7 @@ function parseURL() {
 
 async function getKata(page = 0) {
   const response = await fetch(proxyurl + url + `?page=${page}`);
+  console.log(`Fetching page ${page}`);
   const json = await response.json();
   return json;
 }
@@ -43,18 +44,13 @@ async function click() {
 
   // --- JSON HANDLING --- //
   cwArr = await getKata(); // getting json from Codewars API
-  console.log(cwArr);
 
   if (cwArr.totalPages > 1) {
     for (let i = 1; i < cwArr.totalPages; i++) {
-      console.log(i);
       let temp = await getKata(i);
-      console.log(temp);
       cwArr.data = cwArr.data.concat(temp.data);
     }
   }
-
-  console.log(cwArr);
 
   cwArr = cwArr.data.filter(n => n.completedLanguages.includes(lang)); // getting data on requested lang
   cwArr = cwArr.map(n => n.slug); // extracting "slugs"
